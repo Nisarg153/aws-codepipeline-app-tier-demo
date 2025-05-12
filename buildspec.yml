@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+  pre_build:
+    commands:
+      - echo Installing source dependencies...
+  build:
+    commands:
+      - echo Build phase skipped
+      - chmod +x scripts/*.sh
+
+artifacts:
+  files:
+    - appspec.yml
+    - scripts/**
+    - app-tier/**
+  discard-paths: no

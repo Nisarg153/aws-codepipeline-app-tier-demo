@@ -1,0 +1,26 @@
+version: 0.0
+os: linux
+
+files:
+  - source: app-tier/
+    destination: /home/ec2-user/app-tier
+    overwrite: true
+
+permissions:
+  - object: /home/ec2-user/app-tier
+    pattern: "**"
+    owner: ec2-user
+    group: ec2-user
+
+hooks:
+  BeforeInstall:
+    - location: scripts/stop_app.sh
+      runas: ec2-user
+
+  AfterInstall:
+    - location: scripts/install_dependencies.sh
+      runas: ec2-user
+
+  ApplicationStart:
+    - location: scripts/start_app.sh
+      runas: ec2-user
