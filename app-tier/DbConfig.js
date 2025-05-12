@@ -1,7 +1,8 @@
 const AWS = require('aws-sdk');
 
 // Hardcoded DB host
-const DB_HOST = 'bootcamp1-aurora-writer.cw94i4e2ijk2.us-east-1.rds.amazonaws.com';
+const DB_HOST = 'bootcamp1-aurora-writer.czys8q4cwgnz.us-east-1.rds.amazonaws.com';
+const DB_DATABASE = 'webappdb'
 const secretName = 'bootcamp1/rdsCredentials'; // Your secret name
 const region = 'us-east-1';
 
@@ -22,9 +23,9 @@ async function getDbConfig() {
 
     return Object.freeze({
       DB_HOST,
-      DB_USER: secret.DB_USER,
-      DB_PWD: secret.DB_PWD,
-      DB_DATABASE: secret.DB_DATABASE,
+      DB_USER: secret.username,
+      DB_PWD: secret.password,
+      DB_DATABASE,
     });
   } catch (err) {
     console.error('Error retrieving secret:', err);
